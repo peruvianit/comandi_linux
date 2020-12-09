@@ -122,11 +122,6 @@ cp	: Il comando cp si occupa di duplicare uno o più file e directory in altra p
 		-v, --verbose		Fornisce informazioni dettagliate delle copie eseguite
 		-x, --one-file-system	Esegue la copia unicamente nello stesso file system
 
-nice	: La priorità di esecuzione di un processo viene definita in modo autonomo da parte del sistema e può essere regolata 
-	  da parte dell'utente sommandovi il cosiddetto valore nice. Un valore basso significa precedenza (quindi priorità) 
-	  rispetto ai valori superiori.
-		nice -n 15 <COMANDO>
-
 ll	: La sintassi è estremamente semplice, ad esempio il comando per creare un comune alias è il seguente: alias ll='ls -l'
 fuser	: Permette di visualizzare ed analizzare quali processi stanno operando su un determinato file.
 		fiuser <NOME_FILE>
@@ -138,9 +133,6 @@ fuser	: Permette di visualizzare ed analizzare quali processi stanno operando su
 		r : directory radice;
 		m : file mappato in memoria o libreria condivisa.
 pstree	: Mostra un albero di processi
-ps	: El comando ps se usa para informar del estado del proceso. ps es la abreviatura de Process Status.
-		O Ordina [+Asc -Desc] Key [c cmd | p pid | U uid | u user | altri]
-		ps O-c // Ordina Descendentemente per comand line
 top	: Visualizza la situazione sull'utilizzo delle risorse di sistema attraverso una tabella dell'attività
 	  principale della CPU
 		-c Permette di visualizzare la riga di comando, invece del solo nome del programma.
@@ -149,14 +141,6 @@ yes	: El comando yes muestra repetidamente la cadena dada separada por un espaci
 	  Si no se da ninguna cadena, sólo muestra "y" repetidamente hasta que se le detiene. Se utiliza normalmente en scripts, su salida 
 	  se une a un comando o programa que pida confirmación para hacer una u otra cosa (quieres borrar este archivo pulsa "y" o "n")
 		yes | rm -i *.txt
-nohup	: Esegue un altro comando facendogli ignorare il segnale SIGHUP, in modo da permettergli di proseguire l'esecuzione anche in caso di 
-	  una disconnessione dal terminale, o della chiusura dell'emulatore di terminale.
-		nohup <COMANDO> [ARGUMENTI]
-		nohup cp -R /home/utente/dati  /mnt/backup </dev/null 
-kill	: Permette di inviare un segnale a uno o più processi identificati attraverso il loro numero PID.
-		-l Mostra l'elenco dei segnali disponibili con i numeri corrispondenti.
-		-s Specifica il nome o il numero del segnale da inviare
-		kill -s SIGHUP <PID>
 mount	: Permettere di montare un file system all'interno del sistema.
 		mount -t tipo_di_file_system <DISPOSITIVO> <PUNTO_DI_INNESTO>
 showmunt: Permette di conoscere cosa viene messo a disposizione dai vari server.
@@ -168,6 +152,30 @@ find 	: Serve per cercare all'interno di una directory e delle sue sottodirector
 		find / -user <NOME_UTENTE> –print
 stat	: Visualizzare le informazioni dei file con stat.
 		stat <NOME_FILE>
+/******************************************** PROCESSI SISTEMA ******************************************/	
+ps	: El comando ps se usa para informar del estado del proceso. ps es la abreviatura de Process Status.
+		O Ordina [+Asc -Desc] Key [c cmd | p pid | U uid | u user | altri]
+		ps aux // visualizza anche l'informazione del utente
+		ps O-c // Ordina Descendentemente per comand line
+kill	: Permette di inviare un segnale a uno o più processi identificati attraverso il loro numero PID.
+		-l Mostra l'elenco dei segnali disponibili con i numeri corrispondenti.
+		-s Specifica il nome o il numero del segnale da inviare
+		kill -s SIGHUP <PID>	
+jobs	: Mostra i processi che stanno in esecuzione al interno della terminal.
+		vim <FILE> // presionare CTRL + Z, viene visualizzato 
+		>> [1]+  Stopped                 vim <FILE>
+fg 		: Apre un processo che stato pausato con CTRL + Z
+		fg   // apre l'ultimo processo pausato
+		fg N // apre il numero di processo pausato		
+nohup	: Esegue un altro comando facendogli ignorare il segnale SIGHUP, in modo da permettergli di proseguire l'esecuzione anche in caso di 
+	  una disconnessione dal terminale, o della chiusura dell'emulatore di terminale.
+		nohup <COMANDO> [ARGUMENTI]
+		nohup cp -R /home/utente/dati  /mnt/backup </dev/null 			  
+nice	: La priorità di esecuzione di un processo viene definita in modo autonomo da parte del sistema e può essere regolata 
+	  da parte dell'utente sommandovi il cosiddetto valore nice. Un valore basso significa precedenza (quindi priorità) 
+	  rispetto ai valori superiori.
+		nice -n 15 <COMANDO>
+
 /***************************************** VARIABILI DI AMBIENTE ****************************************/
 set	: Si possono vedere tutte le variabili correntemente definite
 	  nell’ambiente di lavoro
