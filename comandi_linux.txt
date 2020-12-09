@@ -1,0 +1,504 @@
+/*********************************** TASTIERA ***********************************************************/
+Alt Gr + ì = ~  : Questo alias è fondamentale per script e programmi in quanto, indicando sempre la home 
+		  dell'utente corrente, rende più facile l'accesso ai relativi file e configurazioni senza 
+		  il bisogno di doverne specificare il nome.
+
+/********************************* NOME PERIFERICHE IN LINUX ********************************************/
+* prima unità floppy				/dev/fd0
+* seconda unità floppy				/dev/fd1
+* primo disco fisso ATA (IDE)			/dev/hda
+* secondo disco fisso (o CD-ROM) ATA (IDE)	/dev/hdb
+* terzo disco fisso (o CD-ROM) ATA (IDE)      	/dev/hdc
+* quarto disco fisso (o CD-ROM) ATA (IDE)      	/dev/hdd
+* primo disco SCSI				/dev/sda
+* secondo disco SCSI                            /dev/sdb
+* terzo disco SCSI                              /dev/sdc
+
+Tipi di file system 
+
+* minix		Minix
+* ext2		Second-extended
+* umsdos	Linux su Dos-FAT
+* msdos		Dos-FAT (nomi 8.3)
+* vfat		Dos-VFAT (nomi lunghi)
+* nfs		NFS o file system di rete
+* iso9666	CD-ROM
+* smbfs		SMB (rete NetBIOS-TCP/IP)
+* proc		file system virtuale /proc
+* swap		partizione di scambio
+
+/**************************************** INFO SYSTEM ***************************************************/
+id	: El comando id muestra el identificador actual y real de usuarios y grupos
+		id
+uptime	: Permette di conoscere da quanto tempo è in funzione il sistema senza interruzioni. Emette una
+	  sola riga contenente. 
+		* l'orario attuale;
+		* da quanto tempo è in funzione il sistema;
+		* il carico medio di sistema dell'ultimo minuto, degli ultimi cinque minuti e degli ultimi 15 minuti.
+	 	uptime
+free	: Emette attraverso lo standard output una serie di informazioni relative alla memoria reale e virtuale (swap).
+		free
+/************************************ GESTIONE PERMESSI *************************************************/
+chown	: Cambia la proprietà dei file
+		-R Esegue l’operazione anche nelle sottodirectory
+		chown <NOME_UTENTE> <FILE>
+		chown <NOME_UTENTE>.<NOME_GRUPPO> <FILE>
+		chown.<NOME_GRUPPO> <FILE>
+
+chmod	: Cambia la modalità dei permessi sui file indicati come argomento Le modifiche della modalità dei permessi avvengono 
+	  in base alle specifiche indicate nell’argomento precedente all’elenco dei file, e si possono esprimere con la 
+	  sintassi seguente:
+		[u|g|o|a]...[{+|-|=}{r|w|x|X|s|t|u|g|o}...][,...]
+		Utenti (ugoa):
+			* u : Utente proprietario del file.
+			* g : Gruppo proprietario del file.
+			* o : Gli altri utenti.
+			* a : Tutti.
+		Variazione dei permessi (+-=):
+			* + : Le modalità dei permessi indicate vengono aggiunte.
+			* - : Le modalità dei permessi indicate vengono tolte.
+			* = : Le modalità dei permessi vengono modificate in modo da diventare esattamente come indicato.
+		Permessi (rwxXstugo):
+			* r : Permesso di accesso in lettura.
+			* w : Permesso di accesso in scrittura (modifica).
+			* x : Permesso di esecuzione o di attraversamento se si tratta di directory.
+			* X : Come x, ma interviene sulle directory e solo sui file che hanno già un permesso in esecuzione 
+			      per un utente qualunque. In pratica, si cerca di intervenire solo sui file per i quali il 
+			      permesso di esecuzione (o di attraversamento) può avere senso.
+			* s : Riguarda solo i file eseguibili (ed eventualmente le directory). Attiva il bit SUID, o il bit SGID 
+			      a seconda che il cambiamento intervenga sull’utente, sul gruppo o su entrambi.
+			* t : Riguarda solo i file eseguibili (ed eventualmente le directory). Attiva il bit Sticky.
+			* u : Attribuisce le stesse modalità dei permessi che ha già l’utente proprietario di quel file.
+			* g : Attribuisce le stesse modalità dei permessi che ha già il gruppo proprietario di quel file.
+			* o : Attribuisce le stesse modalità dei permessi che hanno già gli altri utenti per quel file.
+		Esempio :
+			chmod -R go-rwx  ̃/*
+			Toglie sia al gruppo che agli altri utenti la possibilità di accedere in qualunque modo ai file della propria 
+			directory personale e anche nelle sottodirectory successive.
+
+/**************************************** MESSAGISTICA **************************************************/
+write	: Inviare un messaggio ad un altro utente
+		write <NOME_UTENTE> <DEVICE_CONSOLA {tty/0}>
+talk	: Permette di effettuare conversazioni in tempo reale con altri utenti
+wall	: Invia un messaggio a tutti gli utenti connessi al sistema
+mesg	: Configura le opzioni necessarie per permettere ad altri utenti di scrivervi dei messaggi.
+/********************************************************************************************************/
+cd 	: Se non viene specificata alcuna directory di destinazione, il comando riporta l'utente nella home dir. Se viene 
+	  indicato il simbolo '-' al posto della directory, il comando riconduce l'utente alla directory precedentemente occupata.
+		cd <PATH_CARTELLA>
+pwd	: Acronimo di 'print working directory'.Muestra la posizione corrente all'interno del filesystem.
+		pw.
+		pwdd
+cp	: Il comando cp si occupa di duplicare uno o più file e directory in altra posizione, cambiandone, se necessario, nome e attributi, 
+	  è possibile fare backup, creare link invece di replicare il file oltre a molto altro.
+		Opzione			Sinificato
+		-b			Esegue un backup se il file di destinazione esiste
+		-i, --interactive	Chide conferma prima di sovrascrivere
+		-p			Mantiene i permessi e gli orari di creazione/accesso/modifica al file
+		-r, -R, --recursive	Copia tutte le subdirectory ricorsivamente
+		-s, --symbolic-link	Crea link simbolici al posto di copiare i file
+		-u, --update		Copia soltanto se il file di destinazione non esiste o se è più vecchio di quello di origine
+		-v, --verbose		Fornisce informazioni dettagliate delle copie eseguite
+		-x, --one-file-system	Esegue la copia unicamente nello stesso file system
+
+nice	: La priorità di esecuzione di un processo viene definita in modo autonomo da parte del sistema e può essere regolata 
+	  da parte dell'utente sommandovi il cosiddetto valore nice. Un valore basso significa precedenza (quindi priorità) 
+	  rispetto ai valori superiori.
+		nice -n 15 <COMANDO>
+
+ll	: La sintassi è estremamente semplice, ad esempio il comando per creare un comune alias è il seguente: alias ll='ls -l'
+fuser	: Permette di visualizzare ed analizzare quali processi stanno operando su un determinato file.
+		fiuser <NOME_FILE>
+	  Quando si utilizza fuser per ottenere l'elenco dei processi che accedono a determinati file, i numeri di questi processi 
+	  sono abbinati a una lettera che indica il modo in cui accedono:
+		c : directory corrente;
+		e : eseguibile in esecuzione;
+		f : file aperto (spesso questa lettera non viene mostrata affatto);
+		r : directory radice;
+		m : file mappato in memoria o libreria condivisa.
+pstree	: Mostra un albero di processi
+ps	: El comando ps se usa para informar del estado del proceso. ps es la abreviatura de Process Status.
+		O Ordina [+Asc -Desc] Key [c cmd | p pid | U uid | u user | altri]
+		ps O-c // Ordina Descendentemente per comand line
+top	: Visualizza la situazione sull'utilizzo delle risorse di sistema attraverso una tabella dell'attività
+	  principale della CPU
+		-c Permette di visualizzare la riga di comando, invece del solo nome del programma.
+		top
+yes	: El comando yes muestra repetidamente la cadena dada separada por un espacio y seguida de una nueva línea hasta que se le detiene. 
+	  Si no se da ninguna cadena, sólo muestra "y" repetidamente hasta que se le detiene. Se utiliza normalmente en scripts, su salida 
+	  se une a un comando o programa que pida confirmación para hacer una u otra cosa (quieres borrar este archivo pulsa "y" o "n")
+		yes | rm -i *.txt
+nohup	: Esegue un altro comando facendogli ignorare il segnale SIGHUP, in modo da permettergli di proseguire l'esecuzione anche in caso di 
+	  una disconnessione dal terminale, o della chiusura dell'emulatore di terminale.
+		nohup <COMANDO> [ARGUMENTI]
+		nohup cp -R /home/utente/dati  /mnt/backup </dev/null 
+kill	: Permette di inviare un segnale a uno o più processi identificati attraverso il loro numero PID.
+		-l Mostra l'elenco dei segnali disponibili con i numeri corrispondenti.
+		-s Specifica il nome o il numero del segnale da inviare
+		kill -s SIGHUP <PID>
+mount	: Permettere di montare un file system all'interno del sistema.
+		mount -t tipo_di_file_system <DISPOSITIVO> <PUNTO_DI_INNESTO>
+showmunt: Permette di conoscere cosa viene messo a disposizione dai vari server.
+		showmount -e <INDIRIZZO_IP>
+find 	: Serve per cercare all'interno di una directory e delle sue sottodirectory i file che soddisfano i criteri stabiliti dall'utente.
+		find / -name <NOME_FILE> -print
+		find / -name <NOME_FILE> -type <TIPO_FILE> -print
+		find / -uid <NUMERO_ID_UTENTE> -print
+		find / -user <NOME_UTENTE> –print
+stat	: Visualizzare le informazioni dei file con stat.
+		stat <NOME_FILE>
+/***************************************** VARIABILI DI AMBIENTE ****************************************/
+set	: Si possono vedere tutte le variabili correntemente definite
+	  nell’ambiente di lavoro
+		$myvar=[VALORE] /* Per definire una nuova variabile shell basta assegnarle un valore */
+		echo $myvar 	/* Visualizzare il valore */
+		unset $myvar	/* Cancellare variabile */
+
+/********************************************************************************************************/
+
+whatis 	: contenenti una breve descrizione dei comandi di sistema
+	  	whatis [NOME_COMANDO]
+
+apropos	: segue la ricerca negli stessi file utilizzati da whatis
+		apropos [NOME_COMANDO]
+
+which	: Permette di trovare il percorso di un file eseguibile.
+		which <NOME_COMANDO>
+whereis	: Este comando se utiliza para localizar el archivo binario, el código fuente y la página de manual de un determinado comando.
+		whereis <NOME_COMANDO>
+tee	: Una caratteristica di tee è quella di non fare uso di buffer di linea nell'effettuare la scrittura sullo standard output e sui file.
+		<comando> | tee [NOME_FILE] | <altro comando>
+
+/*******************************************************************************************************/
+
+dd	: Copia dei dati in blocchi, opzionalmente effettuando conversioni.
+		dd if=/dev/zero of=/dev/sdf bs=1024 count=1
+du	: elenca lo spazio occupato da ciascuna directory
+		-s Spacio Totale
+		-h Formato
+		du <PATH> 
+/****************************** VISUALIZZARE INFO PARTIZIONI *******************************************/
+
+1.) cat /proc/partitions
+2.) sudo blkid 
+3.) lsblk
+4.) sudo fdisk -l
+
+/****************************** CRYPTARE DISCO EXTERNO *************************************************/
+1.) dd if=/dev/zero of=/dev/sdg bs=1M count=10
+2.) cryptsetup --verify-passphrase --verbose --hash=sha256 --cipher=aes-cbc-essiv:sha256 --key-size=256 luksFormat /dev/periferica
+3.) cryptsetup luksOpen /dev/periferica disco_criptato
+	Questo creerà la periferica /dev/mapper/disco_criptado
+4.) mkfs -t ext4 /dev/mapper/disco_criptado
+5.) mkdir /mnt/disco_criptado
+6.) mount -t auto /dev/mapper/disco_criptado /mnt/disco_criptado/
+
+LEVARE DISCO CRIPTADO
+
+1.) umount /mnt/disco_criptado
+2.) cryptsetup luksClose disco_criptado
+
+/******************************* PIANIFICAZIONE DEI PROCESSI ******************************************/
+
+crontab	: Un file crontab tipico può contenere solo comandi di Cron. Il formato di questo può essere riassunto brevemente nel modo seguente:
+	  data_orario comando.
+	  Il comando viene eseguito attraverso la shell indicata all'interno della variabile SHELL, mentre l'indicazione data-orario si 
+	  scompone in altri cinque campi:
+		minuti ore giorni_del_mese mesi giorni_della_settimana
+	  I campi possono contenere un asterisco (*) e in tal caso rappresentano ogni valore possibile di quel campo. 
+	  Per esempio, * * * * * rappresenta ogni minuto di ogni ora di ogni giorno del mese di ogni mese di ogni giorno della settimana.
+
+	  • Valori singoli
+   		Un numero isolato all'interno di un campo indica che il comando deve essere eseguito quando l'orologio del sistema 
+		raggiunge quel valore. Per esempio, 10 6 * * * rappresenta esattamente le ore 06:10 di ogni giorno.
+	  • Intervalli
+		Un intervallo, rappresentato da una coppia di numeri separati da un trattino, indica che il comando deve essere eseguito 
+		ogni volta che l'orologio del sistema raggiunge uno di quei valori possibili. Per esempio, 10 6 1-5 * * rappresenta esattamente le
+		ore 06:10 dei primi cinque giorni di ogni mese.
+	  • Elenchi
+		Un elenco, rappresentato da una serie di numeri separati da una virgola (senza spazi), indica che il comando deve essere eseguito 
+		ogni volta che l'orologio del sistema raggiunge uno di quei valori. Per esempio, 10 6 1-5 1,3,5 * rappresenta esattamente le ore 
+		06:10 dei primi cinque giorni di gennaio, marzo e maggio. Gli elenchi possono essere anche combinati con gli intervalli. 
+		Per esempio, 10 6 1-5 1-3,5-7 * rappresenta esattamente le ore 06:10 dei primi cinque giorni di gennaio, febbraio, marzo, maggio, giugno e luglio.
+	  • Passo
+		Invece di indicare momenti precisi, è possibile indicare una ripetizione o un passo. Questo può essere rappresentato con una 
+		barra obliqua seguita da un valore e indica che il comando deve essere eseguito ogni volta che è trascorsa quella unità di tempo.
+    		Per esempio, */10 6 * * * rappresenta le ore 06:10, 06:20, 06:30, 06:40, 06:50 e 06:00. 
+		In pratica, corrisponde a 0,10,20,30,40,50 6 * * *.
+		Il passo può essere combinato opportunamente con gli intervalli. Per esempio, 0-30/10 6 * * * rappresenta le 6:00, le 6:10, 
+		le 6:20 e le 6:30. In pratica, corrisponde a 0,10,20,30 6 * * *.
+/**************************************** BACKUP ******************************************************/
+ strumenti a disposizione per eseguire copie di sicurezza sono molti e si possono distinguere due estremi possibili:
+	• copiare i file e le directory;
+	• copiare una partizione o un disco intero.
+/*************************************** COMPRESSIONE *************************************************/
+tar	: tar (Tape ARchive) è un programma di archiviazione.
+		-a Aggiunge dei file tar a un archivio già esistente.
+		-c Crea un nuovo archivio.
+		-v Elenca i file che vengono elaborati.
+		-x Estrae i file da un archivio.
+		-f Salva l'archivio nel file o nel dispositivo. Se si tratta di un file normale, questo viene creato.
+		-t Elenca il contenuto di un archivio.
+	  In generale le opzioni più utilizzate sono le seguenti:
+		• -cvf per Compattare;
+		• -xvf per Scompattare
+	  Se si vuole utilizzare come elenco dei file da archiviare un file creato con la redirezione del comando find, è possibile 
+	  farlo utilizzando la seguente sintassi:
+		tar -cvf <NOME_ARCHIVIO> path –T <NOME_FILE>
+
+	  dove nomefile è il nome del file di lista creato con find. Quindi tar includerà nell’archivio i file elencati nel file di 
+	  lista di nome nomefile. Per utilizzare tale procedura, è consigliabile sapere usare bene il comando find.
+
+gzip	:
+gunzip	:
+zcat	: gzip è un programma di compressione attraverso il quale viene creato un file compresso per ogni file indicato negli argomenti.gunzip è un collegamento 
+	  a gzip: avviare gunzip equivale ad avviare gzip con l'opzione -d. Si veda in particolare gzip.info o gzip(1).
+		-c Emette il risultato attraverso lo standard output
+		-d Decomprime un file compresso. gzip si comporta con questa opzione predefinita quando viene eseguito con il nome gunzip.
+		-r Se tra i nomi indicati nella riga di comando appaiono delle directory, vengono compressi o decompressi tutti i file in esse contenuti.
+		-t Controlla l'integrità dei file compressi.
+		-1 | -2 |...| -9 Permette di definire il livello di compressione: -1 rappresenta la compressione minima; -9 rappresenta la compressione massima. 
+		   Per default si utilizza -6.
+
+bzip2	: bzip2 è un programma di compressione funzionalmente analogo a gzip, nel senso che viene creato un file compresso per ogni file indicato negli 
+	  argomenti.bzip2 è in grado di comprimere solo file normali, in modo singolo, dove per ogni file ne viene generato un altro con l'estensione.bz2	  
+
+bunzip2	: bunzip2 è un collegamento a bzip2, il quale, se avviato con questo nome, utilizza implicitamente l'opzione -d per decomprimere i file indicati alla 
+	  fine della riga di comando.
+/******************** PROCEDURA DI INIZIALIZZAZIONE DEL SISTEMA ***************************************/
+Quando un sistema UNIX viene avviato, il kernel si prende cura di avviare il processo iniziale, Init, a partire dal quale vengono poi generati tutti gli altri. 
+Di solito si utilizza un meccanismo di inizializzazione derivato dallo UNIX System V.
+Init determina quali siano i processi da avviare successivamente, in base al contenuto di /etc/inittab il quale a sua volta fa riferimento a una serie di script 
+contenuti normalmente all'interno della directory /etc/rc.d/ o in un'altra analoga.
+	Init : Init è il processo principale che genera tutti gli altri. All'avvio del sistema legge il file /etc/inittab il quale contiene le informazioni per 
+	       attivare gli altri processi necessari,compresa la gestione dei terminali. Per prima cosa viene determinato il livello di esecuzione iniziale, 
+	       ottenendo l'informazione dalla direttiva initdefault di /etc/inittab. Quindi vengono attivati i processi essenziali al funzionamento del sistema 
+	       e infine i processi che combaciano con il livello di esecuzione attivato.
+	       L'eseguibile init può essere invocato dall'utente root durante il funzionamento del sistema, per cambiare il livello di esecuzione, oppure 
+	       ottenere il riesame del suo file di configurazione (/etc/inittab). Se ne consiglia l’uso solo ad utenti esperti.
+		
+		essempio :
+			• init 0
+			Pone il sistema al livello di esecuzione zero: arresto del sistema. Equivale (in linea di massima) all'esecuzione di "shutdown -h now".
+			• init 6
+			Pone il sistema al livello di esecuzione sei: riavvio. Equivale (in linea di massima) all'esecuzione di "shutdown -r now".
+
+		/etc/rc.d/rc.sysinit
+			È lo script di inizializzazione del sistema. In particolare:
+			• attiva la gestione della memoria virtuale per l'uso delle aree di scambio previste nelle partizioni, in base al contenuto del file 
+			  /etc/fstab;
+			• verifica il file system principale e al termine ne esegue il montaggio;
+			• verifica la dipendenza dei moduli;
+			• avvia kerneld per automatizzare il caricamento dei moduli del kernel;
+			• verifica gli altri file system indicati per questo nel file /etc/fstab e al termine ne esegue il montaggio;
+			• elimina o ripulisce i file utilizzati nella sessione di lavoro precedente, che servivano per segnalare lo stato di funzionamento;
+			• configura l'orologio del sistema;
+			• attiva la gestione della memoria virtuale per l'uso delle aree di scambio previste sui file;
+			• eventualmente esegue /etc/rc.d/rc.serial per l'attivazione della porta seriale;
+			• eventualmente esegue /etc/rc.d/rc.modules per l'attivazione di moduli del kernel.
+
+		/etc/rc.d/rc
+			È lo script principale per il controllo dei livelli di esecuzione. Viene utilizzato da Init, attraverso le indicazioni di /etc/inittab, 
+			con un argomento corrispondente al numero di livello di esecuzione da attivare.
+
+		/etc/rc.d/rc livello_di_esecuzione
+			Si limita a determinare se è stato richiesto un cambiamento nel livello di esecuzione, quindi avvia tutti gli script che trova nella 
+			directory /etc/rc.d/rcn.d/ (dove n rappresenta il livello di esecuzione richiesto), cominciando da quelli che iniziano con la lettera 
+			K e terminando con quelli che iniziano con la lettera S.
+			In realtà, questi script sono contenuti nella directory /etc/rc.d/init.d/, con nomi più espressivi, mentre nelle directory /etc/rc.d/rcn.d/ 
+			sono contenuti solo dei collegamenti simbolici con nomi scelti appositamente per definire l'ordine in cui le operazioni devono essere svolte.
+
+		/etc/rc.d/rcn.d/
+			Si tratta delle directory riferite a ogni livello di esecuzione (n rappresenta il numero del livello stesso). Al loro interno si trovano 
+			solo collegamenti simbolici riferiti agli script che si vuole siano eseguiti.
+			Quando viene selezionato il livello di esecuzione relativo, vengono eseguiti in ordine alfabetico, prima gli script (o meglio i collegamenti) 
+			che iniziano con la lettera K (Kill) nella forma:
+				/etc/rc.d/rcn.d/script stop
+			allo scopo di disattivare il servizio particolare cui si riferiscono, quindi quelli che iniziano con la lettera S (Start), nella forma seguente:
+				/etc/rc.d/rcn.d/script start
+		
+		/etc/rc.d/init.d/
+			È il vero contenitore degli script utilizzati dalla procedura di inizializzazione del sistema. Questi vengono utilizzati indirettamente 
+			attraverso collegamenti simbolici contenuti nelle directory /etc/rc.d/rcn.d/.
+
+		/etc/rc.d/init.d/functions
+			Si tratta di uno script utilizzato da quasi tutti gli altri, per definire alcune funzioni standard. In particolare, queste funzioni, 
+			servono per evitare l'avvio di demoni già in funzione e comunque per uniformare il sistema di avvio e conclusione del loro funzionamento.
+	
+		/var/lock/subsys/
+			Questa directory viene utilizzata dagli script contenuti in /etc/rc.d/init.d/ per annotare la presenza in funzione di un servizio 
+			determinato: se esiste un file (vuoto) con quel nome, il servizio è considerato attivo.
+
+/****************************** REGISTRO DEL SISTEM ***************************************************/
+Il registro del sistema (system log, o anche syslog) è la procedura di registrazione degli eventi importanti all'interno di un cosiddetto file di log, ovvero 
+un file delle registrazioni. Questa procedura è gestita principalmente dal demone syslogd, che viene configurato attraverso /etc/syslog.conf. 
+Altri programmi o demoni possono aggiungere annotazioni al registro inviando messaggi a syslogd.
+	/etc/syslog.conf
+		Questo file contiene una serie di righe formate da coppie di campi selettore e azione, dove selettore definisce cosa loggare, e azione dove 
+		scrivere i log; i due campi sono separati da spazi o tabulazioni.
+		Ogni selettore è definito da una coppia facility e priorità separati da un punto: facility stabilisce il genere di dati da considerare per i 
+		log (ad esempio le informazioni provenienti dal 133 processo che si occupa di gestire le stampanti, lpd), mentre priorità pone un filtro alla 
+		gravità dei messaggi da loggare.
+			facility ----..---- priorità
+				     |	           |
+				 mail.err /var/log/mail.err
+				‘----+---’‘--------+--------’
+				     |             |
+				selettore ----’ ‘---- azione
+
+		Significa che di tutti i messaggi provenienti dai programmi che gestiscono il sistema di posta (ad esempio sendmail, postfix, qmail, smail 
+		o simili) bisogna loggare nel file /var/log/mail.err solamente quelli la cui priorità corrisponde o supera il livello err.
+		Cosa è possibile loggare
+			Le facility predefinite si possono trovare nel file /usr/include/sys/syslog.h:
+				• auth: messaggi relativi alla sicurezza del sistema, come ad esempio registrazioni di login e logout 
+					(è usato da programmi come su(1)e login(1)).
+				• authpriv: come auth, ma il messaggio potrebbe contenere dati sensibili, quindi è bene dirigerlo su un file separato che 
+					ci si preoccuperà di non rendere leggibile a tutti.
+				• cron: il sottosistema di temporizzazione degli eventi: comprende ad esempio daemon come cron(8)e anacron(8).
+				• daemon: generico per i daemon di sistema.
+				• kern: messaggi del kernel.
+				• lpr: il sottosistema che gestisce le stampanti.
+				• mail: tutto ciò che ha a che fare con la consegna o ricezione di email.
+				• news: gestione delle news Usenet.
+				• syslog: messaggi generati dallo stesso syslog.
+				• user: messaggi generici provenienti da programmi in user space (in contrapposizione ai log generati dal kernel).
+				• uucp: il sottosistema UUCP.
+				• ftp: riservato ai server ftp.
+				• da local0 a local7: riservati per utilizzi locali.
+		Esempio :
+			• kern.*;news.info	/var/log/uucp_and_news.log
+			• mail.=info		/var/log/mail.info
+			  mail.=warning		/var/log/mail.warn
+				In questo modo vengono solo i messaggi di warning del sottosistema che si occupa della gestione delle mail, mentre in 
+				/var/log/mail.info si troveranno solo quelli informativi: se qui non si fosse aggiunto l'uguale avrebbe raccolto anche 
+				i messaggi di tipo notice, warning e degli altri livelli superiori.
+			• mail.*;mail.!=debug	/var/log/mail.nodebug
+			  	che memorizza tutti i messaggi del dato sottosistema ad esclusione di quelli relativi al debug
+
+		In ogni punto lungo le righe di configurazione è possibile andare a capo terminando la riga con un backslash:
+			*.=info;*.=notice;*.=warning;\
+			auth,authpriv.none;\
+
+/***************************** CARATTERISTICHE AVANZATE DELLE SHELL MODERNE *****************************/
+La prima cosa che si vede una volta avviata la shell è il prompt, una sequenza di uno o più caratteri che avvisano l'utente che la shell è pronta per 
+accettare comandi. Generalmente termina con il carattere dollaro ($) o percento (%) per indicare che nella shell ci si è autenticati come utente 
+standard oppure il carattere cancelletto (#) che di solito si usa per indicare che i comandi impartiti vengono eseguiti dall'utente amministratore, 
+chiamato “root” negli ambienti Unix.
+
+Prendiamo ancora la shell bash per mostrare degli esempi. Il prompt standard è cosi composto:
+	username@hostname:path_completo$
+
+	• Shell history : Questa è la caratteristica senz'altro più utilizzata insieme alla precedente. La shell mantiene una memoria cache con un certo 
+	        numero di comandi inseriti, generalmente gli ultimi 500 o 1000.Tutti i comandi digitatati durante la sessione vengono poi salvati al 
+		logout nel file ~/.bash_history.
+		Il comando interno “history” permette di vedere lo storico di tutti i comandi digitati con il numero progressivo a lato. Conoscendo 
+		quindi il numero progressivo del comando lo si puó richiamare digitando un punto esclamativo (!) seguito da tale numero, mentre un 
+		doppio punto esclamativo richiama l'ultimo comando eseguito.
+		Dalla shell :
+			!! 	: Chiama l'ultimo comando.
+			!-[N]	: Chiama il comando indietro il [N]
+			![N]	: Chiama il comando con numero di cronologia [N]
+			
+			El caso non si sia certi del numero del comando nello storico, per evitare il rischio di lanciare un comando indesiderato, 
+			o peggio dannoso (si pensi ad un comando di cancellazione), si puó appendere al richiamo del numero di comando un segnale, 
+			come mostrato in questo esempio:
+				!126:p 	: Stampa a video il comando della cronologia con il numero 126
+			
+			Un altro modo per recuperare una riga di comando che si trova nello storico della bash, ma che non sappiamo a che numero 
+			progressivo abbia, è tramite l'uso dello shortcut “CTRL+r”, la ricerca inversa. Proviamo nella nostra shell e vedremo che 
+			alla pressione dello shortcut il prompt cambierà come segue:
+				(reverse-i-search)`':
+
+	• Word modifiers : Abbiamo già visto i caratteri “:p” che aggiunti al termine di richiamo del comando lo visualizzano a video, ma non lo eseguono. 
+		Si chiama modificatore di parola e ve ne sono altri che ovviamente iniziano sempre con i due punti. Vediamone alcuni:
+
+    			:h dall'ultimo argomento del comando prende il percorso rimuovendone il nome del file
+    			:t rimuove la parte iniziale dell'argomento mantenendone la coda (la parte finale)
+    			:r mantiene la riga di comando eliminandone la coda a partire dal carattere “punto”
+    			:e rimuove tutto tranne l'ultimo argomento o dal carattere “punto” fino a fine riga
+
+		Esempio :
+			cd !$:h
+			file !-2$:t
+	• Line editing : Una interessante caratteristica delle shell è quella di permettere di modificare una linea di comando mediante shortcut, il che 
+		torna molto utile quando si hanno linee di comando molto lunghe.
+			
+    			ESC+b sposta il cursore indietro di una parola
+    			ESC+f sposta il cursore avanti di una parola
+    			CTRL+b sposta il cursore di un carattere indietro (a sinistra)
+    			CTRL+f sposta il cursore di un carattere in avanti (a destra)
+    			CTRL+a sposta il cursore ad inizio riga
+    			CTRL+e sposta il cursore a fine riga
+    			CTRL+k cancella tutti i caratteri dalla posizione del cursore fino a fine riga
+    			CTRL+u cancella tutti i caratteri dalla posizione del cursore fino ad inizio riga
+    			CTRL+w cancella la parola indietro (a sinistra del cursore)
+    			CTRL+v permette di inserire un carattere di controllo (ad esempio l'ESC)
+
+	•  Alias : Il comando alias permette di definire delle parole chiave a cui assegnare un comando personalizzato, un alias appunto. Tale comando 
+		puó essere anche la combinazione o una sequenza di piú comandi.
+
+		Come per le variabili d'ambiente, ogni alias definito nella shell mantiene il proprio valore solo fino a che la shell non viene chiusa, 
+		pertanto in qualsiasi altra shell quell'alias non esiste. Per mantenerne la definizione in ogni shell che viene lanciata occorre scriverli 
+		nel file di startup della shell stessa, ad esempio nel file “~/.bashrc” nel caso della bash o nel file “~/.zshrc” nel caso della zsh. 
+		In tal modo al momento dell'apertura della shell, tra le altre cose, verranno anche definiti gli alias. Qualche esempio:
+
+			lias grep='grep --color -n'
+
+/***************************** WILLCARDS E PATHNAME EXTENSIONS ******************************************/	
+Ogni volta che si esprime una path è possibile inserire alcuni codici che la shell sostituirà in tutte le possibili corrispondenze. Detti codici si 
+definiscono wildcards (ossia caratteri jolly in italiano).
+Utilizzando le wildcards, invece di passare un unico parametro, richiediamo al sistema di considerare validi tutti i parametri corrispondenti ad un 
+determinato pattern.
+
+	Wildcards		Corrispondenza
+	*			Qualunque serie di carattere
+	?			Un carattere qualunque
+	[abcde]			Un carattere incluso nella lista
+	[a-e]			Un carattere incluso nel range (a,b,c,d,e)
+	[!abcde]		Un qualunque carattere non incluso nella lista
+	[!a-e]			Un qualunque carattere non incluso nel range (a,b,c,d,e)
+	{debian,ubuntu}		Esattamente una delle parole incluse nella lista
+
+	Esempio:
+		$ ls ~/Do*
+		$ ls ~/{Documenti,Download}/*.txt
+		$ ls ~/[a-e]?*
+
+/************************ MANIPOLAZIONE DI STREAM E FILE DI TESTO *************************************/
+tac	: Il funzionamento di tac è quello dell’esatto opposto di cat. Esso infatti concatena e stampa il contenuto dei file in ordine inverso, partendo 
+	  cioè dall’ultima riga.
+		tac <NOME_FILE>
+tr	: Il comando tr permette di modificare o cancellare caratteri da uno stream di input. Dato ad esempio il file contenente l’elenco precedente, sarà 
+	  possibile ad esempio sostituire i caratteri newline (accapo) con il carattere “#”.
+		cat <NOME_FILE> | tr "\n" "#"
+	  è possibile convertire tutte le lettere maiuscole in minuscole attraverso l’utilizzo dei seguenti set:
+		cat <NOME_FILE> | tr "[:upper:]" "[:lower:]"
+nl	: nl consente di numerare le righe proveniente da uno stream di input.
+		cat <NOME_FILE> | nl
+paste	: Il comando paste permette di unire due file riga per riga.
+		paste <NOME_FILE_1> <NOME_FILE_2>
+	  paste può essere utilizzato per operare anche su stream di input in modo da unire le righe prodotte ad un’elaborazione a quelle di un file: 
+		tac <NOME_FILE>|paste - <NOME_FILE>
+	  o stream generato dal comando tac viene utilizzato da paste attraverso l’introduzione del carattere “-” per ottenere l’unione di tutte le righe 
+	  del file con quelle dello stesso, ma contrapposte.
+
+join	: Lo si può considerare il cugino specializzato di paste. Questa potente utility consente di fondere due file in modo da fornire un risultato 
+	  estremamente interessante. Crea, in sostanza, una versione semplificata di un database relazionale. 
+		join <NOME_FILE_1> <NOME_FILE_2>
+	  Il  comando join opera solo su due file, ma unisce soltanto quelle righe che possiedono una corrispondenza di campo comune (solitamente un'
+	  etichetta numerica) e visualizza il risultato allo stdout. I file che devono essere uniti devono essere anche ordinati in base al campo comune, 
+	  se si vuole che l'abbinamento delle righe avvenga correttamente.
+		esempio :
+		*** File 1.dat
+		100 Scarpe
+		200 Lacci
+		300 Calze
+		*** File 2.dat
+		100 EUR 40.00
+		200 EUR 1.00
+		300 EUR 2.00
+
+		join 1.dat 2.dat
+		100 Scarpe EUR 40.00
+		200 Lacci  EUR 1.00
+		300 Calze  EUR 2.00
