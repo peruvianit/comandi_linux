@@ -38,7 +38,7 @@ uptime	: Permette di conoscere da quanto tempo è in funzione il sistema senza i
 	 	uptime
 free	: Emette attraverso lo standard output una serie di informazioni relative alla memoria reale e virtuale (swap).
 		free
-/************************************ GESTIONE PERMESSI *************************************************/
+/************************************ GESTIONE UTENTI *************************************************/
 chown	: Cambia la proprietà dei file
 		-R Esegue l’operazione anche nelle sottodirectory
 		chown <NOME_UTENTE> <FILE>
@@ -84,6 +84,19 @@ pwscore	: Comando per comprobare quanto è sicura la password, per il suo utiliz
 			>> pwscore (invio)
 			   inserire password
 			Il risultato è da 0 a 100, la password è più sicura quando il valore che ritorna se avicina a 100.
+/**************************************** LETTURA FILE **************************************************/	
+cat		: Cat ha la funzione di leggere i dati da un file e mostrarli in output, può anche essere utilizzato per concatenare due o più file.
+			cat cat <FILE>
+			cat -n <FILE> // mostra le linee numerate
+			cat <FILE 1> <FILE 2> // concatena più di un file
+
+less	: utility della riga di comando che serve per visualizzare il contenuto di un file o l'output di un comando, una pagina alla volta
+			ps aux | less	
+head	: Visualizza la prima parte di un file. E' possibile specificare il numero di righe da mostrare.
+			head -30 <FILE>	
+tail 	: Funziona esattamente come head ma, invece di mostrare le prime righe, mostra le ultime.
+			tail <FILE>			
+			tail -f <FILE> // resta in ascolto, quando il file è modificato viene aggiornato in tempo reale.
 /**************************************** MESSAGISTICA **************************************************/
 write	: Inviare un messaggio ad un altro utente
 		     write <NOME_UTENTE> <DEVICE_CONSOLA {tty/0}>
