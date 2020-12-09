@@ -38,6 +38,7 @@ uptime	: Permette di conoscere da quanto tempo è in funzione il sistema senza i
 	 	uptime
 free	: Emette attraverso lo standard output una serie di informazioni relative alla memoria reale e virtuale (swap).
 		free
+whoami	: Mostra il nome dell'utente loggato sulla shell in questo momento		
 /************************************ GESTIONE UTENTI *************************************************/
 chown	: Cambia la proprietà dei file
 		-R Esegue l’operazione anche nelle sottodirectory
