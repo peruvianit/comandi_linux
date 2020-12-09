@@ -76,9 +76,17 @@ chmod	: Cambia la modalità dei permessi sui file indicati come argomento Le mod
 			Toglie sia al gruppo che agli altri utenti la possibilità di accedere in qualunque modo ai file della propria 
 			directory personale e anche nelle sottodirectory successive.
 
+ulimit	: Il comando ulimit è un comando interno della shell Bash che permette di controllare e limitare l'accesso a risorse globali di sistema da parte della shell nella quale lo si esegue e da parte dei processi derivati.
+	Per vedere tutti i limiti impostati si può utilizzare il comando
+			ulimit -a
+			ulimit -u 5 // Impostare il numero massimo di programma utente singolo
+pwscore	: Comando per comprobare quanto è sicura la password, per il suo utilizzo bisogna installare la libreria "libpwquality-tools".
+			>> pwscore (invio)
+			   inserire password
+			Il risultato è da 0 a 100, la password è più sicura quando il valore che ritorna se avicina a 100.
 /**************************************** MESSAGISTICA **************************************************/
 write	: Inviare un messaggio ad un altro utente
-		write <NOME_UTENTE> <DEVICE_CONSOLA {tty/0}>
+		     write <NOME_UTENTE> <DEVICE_CONSOLA {tty/0}>
 talk	: Permette di effettuare conversazioni in tempo reale con altri utenti
 wall	: Invia un messaggio a tutti gli utenti connessi al sistema
 mesg	: Configura le opzioni necessarie per permettere ad altri utenti di scrivervi dei messaggi.
