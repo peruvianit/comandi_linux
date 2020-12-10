@@ -104,7 +104,7 @@ write	: Inviare un messaggio ad un altro utente
 talk	: Permette di effettuare conversazioni in tempo reale con altri utenti
 wall	: Invia un messaggio a tutti gli utenti connessi al sistema
 mesg	: Configura le opzioni necessarie per permettere ad altri utenti di scrivervi dei messaggi.
-/********************************************************************************************************/
+/************************************** FILESYSTEM*******************************************************/
 cd 	: Se non viene specificata alcuna directory di destinazione, il comando riporta l'utente nella home dir. Se viene 
 	  indicato il simbolo '-' al posto della directory, il comando riconduce l'utente alla directory precedentemente occupata.
 		cd <PATH_CARTELLA>
@@ -176,6 +176,10 @@ nice	: La priorità di esecuzione di un processo viene definita in modo autonomo
 	  da parte dell'utente sommandovi il cosiddetto valore nice. Un valore basso significa precedenza (quindi priorità) 
 	  rispetto ai valori superiori.
 		nice -n 15 <COMANDO>
+
+/************************************************ NETWORK ***********************************************/
+netstat	: Fornisce informazioni sulle connessioni di rete
+		netstat -tulpn // tcp,udp,che sono in ascolto, mosrare porta, formato numero
 
 /***************************************** VARIABILI DI AMBIENTE ****************************************/
 set	: Si possono vedere tutte le variabili correntemente definite
