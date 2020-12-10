@@ -90,6 +90,9 @@ cat		: Cat ha la funzione di leggere i dati da un file e mostrarli in output, pu
 			cat cat <FILE>
 			cat -n <FILE> // mostra le linee numerate
 			cat <FILE 1> <FILE 2> // concatena più di un file
+		  Per la creazione di un file utilizando cat
+		  	cat > <PATHNAME> 
+			  >> Iniziare a scrivere // Per salvare i cambi pressionare CTRL + C	
 
 less	: utility della riga di comando che serve per visualizzare il contenuto di un file o l'output di un comando, una pagina alla volta
 			ps aux | less	
