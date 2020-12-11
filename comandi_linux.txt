@@ -154,6 +154,8 @@ find 	: Serve per cercare all'interno di una directory e delle sue sottodirector
 		find / -name <NOME_FILE> -type <TIPO_FILE> -print
 		find / -uid <NUMERO_ID_UTENTE> -print
 		find / -user <NOME_UTENTE> –print
+		find / -mtime 10 									// modificati nei ultimo 1o minuti
+		find ~/ -name <NOME_FILE> -exec rm {} \; 			// Cancella tutti i file core presenti nella directory home dell'utente.
 stat	: Visualizzare le informazioni dei file con stat.
 		stat <NOME_FILE>
 /******************************************** PROCESSI SISTEMA ******************************************/	
