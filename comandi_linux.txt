@@ -149,6 +149,9 @@ mount	: Permettere di montare un file system all'interno del sistema.
 		mount -t tipo_di_file_system <DISPOSITIVO> <PUNTO_DI_INNESTO>
 showmunt: Permette di conoscere cosa viene messo a disposizione dai vari server.
 		showmount -e <INDIRIZZO_IP>
+stat	: Visualizzare le informazioni dei file con stat.
+		stat <NOME_FILE>
+/************************************************* RICERCA **********************************************/	
 find 	: Serve per cercare all'interno di una directory e delle sue sottodirectory i file che soddisfano i criteri stabiliti dall'utente.
 		find / -name <NOME_FILE> -print
 		find / -name <NOME_FILE> -type <TIPO_FILE> -print
@@ -156,8 +159,16 @@ find 	: Serve per cercare all'interno di una directory e delle sue sottodirector
 		find / -user <NOME_UTENTE> –print
 		find / -mtime 10 									// modificati nei ultimo 1o minuti
 		find ~/ -name <NOME_FILE> -exec rm {} \; 			// Cancella tutti i file core presenti nella directory home dell'utente.
-stat	: Visualizzare le informazioni dei file con stat.
-		stat <NOME_FILE>
+
+grep	: Cerca uno o più file di input alla ricerca di linee che corrispondono a un determinato modello e scrive ciascuna riga corrispondente sullo standard output. Se non viene specificato alcun file, grep legge l'input standard, che di solito è l'output di un altro comando.
+		grep "<FRASSE DA CERCARE>" <PATH_CARTELLA>
+		grep -v "<FRASSE DA CERCARE>" <PATH_CARTELLA> // visualizza le linee che non corrispondono al valore cercato
+		grep -l "<FRASSE DA CERCARE>" <PATH_CARTELLA> // mostra solo il file dove stato trovato la frasse da cercare
+		grep -i "<FRASSE DA CERCARE>" <PATH_CARTELLA> // Non fa distinsione tra minuscole e maiuscole
+		grep -r "<FRASSE DA CERCARE>" <PATH_CARTELLA> // ricerca ricursiva al interno della cartella, salta i collegamenti simbolici
+		grep -R "<FRASSE DA CERCARE>" <PATH_CARTELLA> // ricerca ricursiva al interno della cartella, anche i collegamenti simbolici
+		grep -E 'fatal|error|critical' /var/log/nginx/error.log // utilizzo di regular expression
+		
 /******************************************** PROCESSI SISTEMA ******************************************/	
 ps	: El comando ps se usa para informar del estado del proceso. ps es la abreviatura de Process Status.
 		O Ordina [+Asc -Desc] Key [c cmd | p pid | U uid | u user | altri]
@@ -481,7 +492,7 @@ Prendiamo ancora la shell bash per mostrare degli esempi. Il prompt standard è 
 		nel file di startup della shell stessa, ad esempio nel file “~/.bashrc” nel caso della bash o nel file “~/.zshrc” nel caso della zsh. 
 		In tal modo al momento dell'apertura della shell, tra le altre cose, verranno anche definiti gli alias. Qualche esempio:
 
-			lias grep='grep --color -n'
+			alias grep='grep --color -n'
 
 /***************************** WILLCARDS E PATHNAME EXTENSIONS ******************************************/	
 Ogni volta che si esprime una path è possibile inserire alcuni codici che la shell sostituirà in tutte le possibili corrispondenze. Detti codici si 
