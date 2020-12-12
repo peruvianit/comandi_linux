@@ -38,7 +38,16 @@ uptime	: Permette di conoscere da quanto tempo è in funzione il sistema senza i
 	 	uptime
 free	: Emette attraverso lo standard output una serie di informazioni relative alla memoria reale e virtuale (swap).
 		free
-whoami	: Mostra il nome dell'utente loggato sulla shell in questo momento		
+whoami	: Mostra il nome dell'utente loggato sulla shell in questo momento	
+command : Per ottenere il percorso di un eseguibile in uno script di shell
+		Per scoprire se esiste un determinato comando:
+		# Utilizzo in bash 
+		if command -v <NOME_COMANDO> > /dev/null 2>&1; then // essempio command -v ls
+  			echo <NOME_COMANDO> è disponibile
+		else
+  			echo <NOME_COMANDO> non è disponibile
+		fi	
+		#
 /************************************ GESTIONE UTENTI *************************************************/
 chown	: Cambia la proprietà dei file
 		-R Esegue l’operazione anche nelle sottodirectory
@@ -203,6 +212,7 @@ set	: Si possono vedere tutte le variabili correntemente definite
 		$myvar=[VALORE] /* Per definire una nuova variabile shell basta assegnarle un valore */
 		echo $myvar 	/* Visualizzare il valore */
 		unset $myvar	/* Cancellare variabile */
+	  // In Ubuntu il comando è "env"
 
 /********************************************************************************************************/
 
