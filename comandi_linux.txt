@@ -94,7 +94,7 @@ pwscore	: Comando per comprobare quanto è sicura la password, per il suo utiliz
 			>> pwscore (invio)
 			   inserire password
 			Il risultato è da 0 a 100, la password è più sicura quando il valore che ritorna se avicina a 100.
-/**************************************** LETTURA FILE **************************************************/	
+/**************************************** GESTIONE FILE *************************************************/	
 cat		: Cat ha la funzione di leggere i dati da un file e mostrarli in output, può anche essere utilizzato per concatenare due o più file.
 			cat cat <FILE>
 			cat -n <FILE> // mostra le linee numerate
@@ -110,6 +110,13 @@ head	: Visualizza la prima parte di un file. E' possibile specificare il numero 
 tail 	: Funziona esattamente come head ma, invece di mostrare le prime righe, mostra le ultime.
 			tail <FILE>			
 			tail -f <FILE> // resta in ascolto, quando il file è modificato viene aggiornato in tempo reale.
+truncate: consente di ridurre o estendere la dimensione di un file a una determinata dimensione (svuotare file).
+			truncate -s 0 <FILE> // L'opzione -s 0 imposta la dimensione del file su zero.
+		  altri modi di svuotare un file :
+		  	: > <FILE> 				// I due punti : significano true e non producono output
+			cat /dev/null > <FILE>  // /dev/null, che restituisce solo un carattere di fine file
+			echo -n > <FILE> 		// l'opzione -n dice di non aggiungere una nuova riga
+
 /**************************************** MESSAGISTICA **************************************************/
 write	: Inviare un messaggio ad un altro utente
 		     write <NOME_UTENTE> <DEVICE_CONSOLA {tty/0}>
